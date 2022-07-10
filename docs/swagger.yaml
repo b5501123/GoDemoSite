@@ -1,0 +1,101 @@
+definitions:
+  models.User:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Swagger API.
+  title: Gin Swagger Demo
+  version: "1.0"
+paths:
+  /user:
+    post:
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"msg":"OK"}'
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: '{"msg":"fail"}'
+          schema:
+            type: string
+      summary: User Create
+      tags:
+      - User
+  /user/{id}:
+    delete:
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: User Delete
+      tags:
+      - User
+    get:
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: User Update
+      tags:
+      - User
+    put:
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"msg":"OK"}'
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: '{"msg":"fail"}'
+          schema:
+            type: string
+      summary: User Update
+      tags:
+      - User
+swagger: "2.0"
