@@ -5,7 +5,7 @@
 所以在學習 Gin 的框架，沒有甚麼障礙
 
 
-1.用 goland 開發
-2. 使用Gin Api 框架 設計 Restful API
-3. 使用 Gorm  操作 My Sql
-4. 掛上 Swagger
+- 用 goland 開發
+- 使用Gin Api 框架 設計 Restful API
+- 使用 Gorm  操作 My Sql
+- 掛上 Swagger
