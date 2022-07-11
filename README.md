@@ -12,3 +12,4 @@
 - 使用Gin Api 框架 設計 Restful API
 - 使用 Gorm  操作 My Sql
 - 掛上 Swagger
+- JWT 身分驗證
