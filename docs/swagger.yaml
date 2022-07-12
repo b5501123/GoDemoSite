@@ -13,6 +13,29 @@ info:
   title: Gin Swagger Demo
   version: "1.0"
 paths:
+  /auth/login:
+    post:
+      parameters:
+      - description: params
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"token":""}'
+          schema:
+            type: string
+        "400":
+          description: '{"msg":"fail"}'
+          schema:
+            type: string
+      summary: User LogIn
+      tags:
+      - Auth
   /user:
     post:
       parameters:
@@ -33,6 +56,8 @@ paths:
           description: '{"msg":"fail"}'
           schema:
             type: string
+      security:
+      - BearerAuth: []
       summary: User Create
       tags:
       - User
@@ -51,6 +76,8 @@ paths:
           description: OK
           schema:
             type: string
+      security:
+      - BearerAuth: []
       summary: User Delete
       tags:
       - User
@@ -68,6 +95,8 @@ paths:
           description: OK
           schema:
             type: string
+      security:
+      - BearerAuth: []
       summary: User Update
       tags:
       - User
@@ -95,7 +124,14 @@ paths:
           description: '{"msg":"fail"}'
           schema:
             type: string
+      security:
+      - BearerAuth: []
       summary: User Update
       tags:
       - User
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"

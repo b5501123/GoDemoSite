@@ -1,6 +1,7 @@
 package controller
 
 import (
+	jwtDomain "DemoSite/domain/jwt"
 	"DemoSite/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -8,16 +9,22 @@ import (
 )
 
 func UserControllerInit(server *gin.Engine) {
-	server.GET("/user/:id", get)
-	server.PUT("/user/:id", update)
-	server.POST("/user", create)
-	server.DELETE("/user/:id", delete)
+	router := server.Group("/user/")
+
+	router.Use(jwtDomain.JWTAuthMiddleware())
+	{
+		router.GET("/:id", get)
+		router.PUT("/:id", update)
+		router.POST("/", create)
+		router.DELETE("/:id", delete)
+	}
 }
 
 // @Summary User Update
 // @Tags User
 // @version 1.0
 // @produce text/plain
+// @Security BearerAuth
 // @param id path int true "id"
 // @Success 200 {string} string
 // @Router /user/{id} [get]
@@ -33,6 +40,7 @@ func get(c *gin.Context) {
 // @Tags User
 // @version 1.0
 // @produce application/json
+// @Security BearerAuth
 // @param id path int true "id"
 // @param params body models.User true "params"
 // @Success 200 {object} models.User "{"msg":"OK"}"
@@ -59,6 +67,7 @@ func update(c *gin.Context) {
 // @Tags User
 // @version 1.0
 // @produce application/json
+// @Security BearerAuth
 // @param params body models.User true "params"
 // @Success 200 {object} models.User "{"msg":"OK"}"
 // @Failure 400 {string} json "{"msg":"fail"}"
@@ -82,6 +91,7 @@ func create(c *gin.Context) {
 // @Tags User
 // @version 1.0
 // @produce text/plain
+// @Security BearerAuth
 // @param id path int true "id"
 // @Success 200 {string} string
 // @Router /user/{id} [delete]
